@@ -10,9 +10,12 @@ const Stack = createNativeStackNavigator();
 const Navigations = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Rent" component={RentScreen} />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Rent" component={RentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
