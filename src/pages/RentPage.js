@@ -75,7 +75,6 @@ const RentPage = ({navigation, route}) => {
                   </Text>
                 </View>
                 <RenderAuthor authorData={bookData.authors} />
-                {/* <Text style={styles.textStyle}>{JSON.stringify(bookData, null, 4)}</Text> */}
               </View>
             </View>
           </View>
