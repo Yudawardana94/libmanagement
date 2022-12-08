@@ -6,3 +6,7 @@ const App = () => {
   return <Navigation />;
 };
 export default App;
+
+/**
+ * yarn add --dev @types/jest
+ */

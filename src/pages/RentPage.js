@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
+import AuthorRender from '../components/AuthorRender';
+
 import {dateTimeToText} from '../helpers';
 import {setAppointment} from '../services';
 
@@ -35,21 +37,6 @@ const RentPage = ({navigation, route}) => {
     navigation.navigate('Home');
   };
 
-  const RenderAuthor = ({authorData}) => {
-    return (
-      <View style={styles.mr4}>
-        <Text>Author: </Text>
-        <View style={styles.authorWrapper}>
-          {authorData.map((author, idx) => (
-            <Text style={styles.fs12} key={author.name + Math.random() * 1000}>
-              {author.name}
-              {idx === authorData.length - 1 ? '' : ', '}
-            </Text>
-          ))}
-        </View>
-      </View>
-    );
-  };
   return (
     <>
       <SafeAreaView style={styles.container}>
@@ -74,7 +61,7 @@ const RentPage = ({navigation, route}) => {
                     {bookData.first_publish_year}
                   </Text>
                 </View>
-                <RenderAuthor authorData={bookData.authors} />
+                <AuthorRender authorData={bookData.authors} />
               </View>
             </View>
           </View>
@@ -134,6 +121,7 @@ const styles = StyleSheet.create({
   bookImage: {
     width: 120,
     height: 180,
+    borderRadius: 4,
   },
   segmentInformation: {
     borderWidth: 1,
