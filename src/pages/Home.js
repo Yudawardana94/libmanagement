@@ -30,9 +30,16 @@ const Home = ({navigation}) => {
     setSubject(choosenSubject);
   };
 
+  const onHandleNavigation = (book, route) => {
+    if (route === 'Appointment') {
+      return navigation.navigate('Appointment');
+    }
+    navigation.navigate('Rent', book);
+  };
+
   const RenderAuthor = ({authorData}) => {
     return (
-      <View style={styles.mr4}>
+      <View style={styles.mr4} key={authorData.name}>
         <Text>Author: </Text>
         <View style={styles.authorWrapper}>
           {authorData.map((author, idx) => (
@@ -45,9 +52,15 @@ const Home = ({navigation}) => {
       </View>
     );
   };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.todaySubject}>Today Subject: {subjectToday}</Text>
+      <View style={styles.headerWrapper}>
+        <Text style={styles.todaySubject}>Today Subject: {subjectToday}</Text>
+        <Pressable onPress={() => onHandleNavigation(null, 'Appointment')}>
+          <Text style={styles.appList}>App List</Text>
+        </Pressable>
+      </View>
       <ScrollView>
         <View style={styles.bookListWrapper}>
           {bookData.map(book => {
@@ -72,7 +85,7 @@ const Home = ({navigation}) => {
                   </View>
                   <Pressable
                     style={styles.borrowButton}
-                    onPress={() => navigation.navigate('Rent')}>
+                    onPress={() => onHandleNavigation(book)}>
                     <Text style={styles.textBorrowButton}>Borrow</Text>
                   </Pressable>
                 </View>
@@ -156,9 +169,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
   },
+  headerWrapper: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 8,
+  },
   todaySubject: {
     fontSize: 18,
     fontWeight: '700',
-    padding: 8,
+  },
+  appList: {
+    fontSize: 12,
+    fontWeight: '500',
   },
 });

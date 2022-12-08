@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Store from './store';
 
 const axins = axios.create({
   baseURL: 'https://openlibrary.org/subjects',
@@ -37,4 +38,8 @@ export const getBookList = async subject => {
   } catch (error) {
     return [];
   }
+};
+
+export const setAppointment = item => {
+  Store.appointment.push(item);
 };
