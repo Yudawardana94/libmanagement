@@ -7,28 +7,32 @@ import {
   ScrollView,
   SafeAreaView,
   Pressable,
+  ActivityIndicator,
 } from 'react-native';
 
 import BookItem from '../components/BookItem';
 
 import {getBookList, availableSubject} from '../services';
 
-const {width} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 const Home = ({navigation}) => {
   const [bookData, setBookData] = useState([]);
   const [subjectToday, setSubject] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     getInitData();
   }, []);
 
   const getInitData = async () => {
+    setLoading(true);
     const randomIdx = Math.floor(Math.random() * availableSubject.length);
     const choosenSubject = availableSubject[randomIdx];
     const data = await getBookList(choosenSubject);
     setBookData(data);
     setSubject(choosenSubject);
+    setLoading(false);
   };
 
   const onHandleNavigation = (book, route) => {
@@ -46,13 +50,26 @@ const Home = ({navigation}) => {
           <Text style={styles.appList}>App List</Text>
         </Pressable>
       </View>
-      <ScrollView>
-        <View style={styles.bookListWrapper}>
-          {bookData.map(book => (
-            <BookItem onHandleNavigation={onHandleNavigation} book={book} />
-          ))}
+      {isLoading ? (
+        <View style={styles.middleLocation}>
+          <ActivityIndicator size="large" color="#00ff00" />
+          <Text style={styles.loadingText}>
+            Loading Library's book collection
+          </Text>
         </View>
-      </ScrollView>
+      ) : (
+        <ScrollView>
+          <View style={styles.bookListWrapper}>
+            {bookData.map(book => (
+              <BookItem
+                onHandleNavigation={onHandleNavigation}
+                book={book}
+                key={book.title + Math.random() * 1000}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -100,5 +117,14 @@ const styles = StyleSheet.create({
   appList: {
     fontSize: 12,
     fontWeight: '500',
+  },
+  middleLocation: {
+    height: height / 1.25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 12,
+  },
+  loadingText: {
+    marginTop: 12,
   },
 });
