@@ -1,14 +1,6 @@
-/**
- * @format
- */
+import {dateTimeToText} from '../src/helpers';
 
-import 'react-native';
-import React from 'react';
-import App from '../App';
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
-
-it('renders correctly', () => {
-  renderer.create(<App />);
+test('convert date', () => {
+  expect(typeof dateTimeToText('2022-12-8T00:00:00')).toBe('string');
+  expect(dateTimeToText('2022-12-8T00:00:00')).toBe('2022-12-8');
 });

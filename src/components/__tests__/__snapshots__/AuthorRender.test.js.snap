@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<View
+  style={
+    Object {
+      "marginTop": 4,
+    }
+  }
+>
+  <Text>
+    Author: 
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 12,
+        }
+      }
+    >
+      el.authors.name
+    </Text>
+  </View>
+</View>
+`;

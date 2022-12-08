@@ -30,7 +30,10 @@ const BookItem = ({book, onHandleNavigation}) => {
             </Text>
           </View>
           <Text style={styles.fw500}>{book.cover_edition_key}</Text>
-          <AuthorRender authorData={book.authors} />
+          <AuthorRender
+            authorData={book.authors}
+            key={book.cover_edition_key}
+          />
         </View>
         <Pressable
           style={styles.borrowButton}

@@ -31,7 +31,7 @@ export const getBookList = async subject => {
         authors: el.authors,
         first_publish_year: el.first_publish_year,
         cover_edition_key: el.cover_edition_key,
-        availability: el.availability,
+        // availability: el.availability,
       };
     });
     return mapData;

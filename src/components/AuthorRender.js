@@ -7,7 +7,7 @@ const AuthorRender = ({authorData}) => {
       <Text>Author: </Text>
       <View style={styles.authorWrapper}>
         {authorData.map((author, idx) => (
-          <Text style={styles.fs12}>
+          <Text style={styles.fs12} key={author.name}>
             {author.name}
             {idx === authorData.length - 1 ? '' : ', '}
           </Text>
